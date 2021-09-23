@@ -1,0 +1,39 @@
+body{
+  background-color: white;
+}
+.container{
+  background-color: rgb(240,240,240, 0.2);
+  display: flex;
+  justify-content: center;   
+}
+
+#recent-forms{
+  align-self: flex-start;
+  padding: 8px;
+  padding-bottom: 2px;
+  margin-left: 12px;
+  
+}
+
+#dash-container{
+display:flex;
+justify-content:center;
+align-items: center;
+flex-direction: column;
+max-width: 950px;
+}
+
+#card-container{
+max-width: 950px;
+align-items:center;
+padding: 10px;
+display: flex;
+justify-content: flex-start;
+flex-wrap: wrap;
+}
+
+@media screen and (max-width:600px) {
+  #card-container{
+    justify-content: center;
+  }
+}
