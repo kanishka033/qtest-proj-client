@@ -1,14 +1,13 @@
 body{
-  background-color: white;
+  background-color: #F4F4F9;
 }
 .container{
-  background-color: rgb(240,240,240, 0.2);
+  background-color: #F4F4F9;
   display: flex;
   justify-content: center;   
 }
 
 #recent-forms{
-  align-self: flex-start;
   padding: 8px;
   padding-bottom: 2px;
   margin-left: 12px;

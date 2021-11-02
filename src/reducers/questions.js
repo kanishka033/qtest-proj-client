@@ -1,17 +1,12 @@
-import { FETCH_QUESTIONS, CREATE, UPDATE, DELETE } from '../actions/index.js';
+import { GET_QUESTION } from "../actions";
 
 const questionsReducer = (questions= [], action) =>{
     switch (action.type) {
-        case DELETE:
-            return questions.filter((q)=> q._id !== action.payload )
-        case UPDATE:
-            return questions.map((q)=> q._id === action.payload._id ? action.payload : questions)
-        case FETCH_QUESTIONS:
+        case GET_QUESTION:
             return action.payload;
-        case CREATE:
-            return [...questions, action.payload]
         default:
             return questions;
     }
 }
+
 export default questionsReducer;

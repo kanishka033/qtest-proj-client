@@ -1,8 +1,8 @@
 import { Typography, Box, Button, Card, makeStyles } from '@material-ui/core';
 import PostAddIcon from '@material-ui/icons/PostAdd';
+import { useHistory } from 'react-router';
 import '../App.css';
 import Dashboard from './Dashboard';
-import history from './history';
 import work from './img/work.png';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,12 +32,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MainIntro = ({ currentId, setCurrentId, login }) => {
+const MainIntro = ({ login }) => {
 
 const classes = useStyles();
+const history = useHistory();
 
 const newBlank = () => {
-  setCurrentId('')
   history.push('/new')
 }
 
@@ -68,9 +68,9 @@ return(
  
 <div id="container">
   <div className="description">
-    <p id="title"> Easy online test and quiz maker </p> 
+    <p id="title"> Easy online test and form making </p> 
     <Box mb={2} mt={2}>  
-      <Typography variant="h5">Create, send and analyze your tests, quizzes and assessments for free.  </Typography> 
+      <Typography variant="h5">Create, send and analyze your forms, assessments and quizzes for free.  </Typography> 
     </Box>
     {!login && <button id="getstarted">Get started <i className="fas fa-angle-double-right"></i></button> }
   </div> 
@@ -85,14 +85,13 @@ return(
   </Card> </> 
   </div> ) :
   ( <div className="right-main">
-      <img src={work} style={{height:"20rem",width:"20rem"}} />    
+      <img src={work} style={{height:"18rem",width:"19rem"}} />    
     </div> )
-   
-}
+  }
 </div>
 
 <div>
-  { login? <Dashboard currentId={currentId} setCurrentId={setCurrentId} /> : extraInfo }
+  { login? <Dashboard /> : extraInfo }
 </div>
 </>
 )

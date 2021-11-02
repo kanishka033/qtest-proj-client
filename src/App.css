@@ -1,6 +1,6 @@
 body {
-    margin: 0 auto;
-    font-family: 'Roboto', sans-serif;
+   margin: 0 auto;
+   font-family: 'Roboto', sans-serif;
    background-color: white;
    box-sizing: border-box;
   }
@@ -8,10 +8,11 @@ body {
 #container{
   display: flex;
   flex-direction: row;
+  
 }
 
   #main{
-  color: #115293;
+  color: #005AB4;
   display: flex;
   justify-content: center;
   justify-content: space-evenly;
@@ -24,6 +25,7 @@ body {
 
   .main-logged{
     background-color:white;
+    padding-bottom: 20px;
   }
 
   #create-new{
@@ -32,11 +34,11 @@ body {
     justify-content: center;
     align-items: center;
     min-width: 270px;
-    margin-top: 5px;
+    margin-top: 18px;
   }
   .description {
-    max-width: 375px;
-    padding: 0px 10px 5px 10px;
+    max-width: 400px;
+    padding: 0 10px 0 20px;
    }
 
    #title{
@@ -46,8 +48,9 @@ body {
    }
   
   #getstarted {
-    height: 2rem;
+    height: 2.2rem;
     width: 7rem;
+    margin-top: 2px;
     background-color: #4cd137; 
     color: #FFFFFF;
     font-size: 16px;
@@ -61,7 +64,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-left: 5px;
     width: 300px;
   }
   
@@ -73,6 +75,9 @@ body {
       flex-direction: column;
       min-width: 280px;
     }
+    .right-main{
+      padding-left: 20px;
+    }
   }
   
   /*After blue div who uses qtest */
@@ -82,7 +87,7 @@ body {
   }
 
   #usesIcons{
-    padding: 0px 65px;
+    padding: 0px 75px;
     display: flex;
     justify-content: space-evenly;
     align-items:center;
@@ -117,7 +122,6 @@ body {
    text-align: center;
     font-size: 14px;
   }
-  
   @media screen and (max-width:600px){
     #usesIcons {
       flex-direction: column;

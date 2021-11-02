@@ -1,0 +1,30 @@
+
+.submit{
+background-color:#27ae60;
+margin-bottom: 10px;
+}
+
+.alert-container {
+    height:100vh;
+    width:100%;
+    background-color:white;
+}
+
+.alert-docName {
+    height: 100px;
+    max-width: 430px;
+    margin:auto;
+}
+
+@media screen and (max-width:600px) {
+    .alert-docName {
+     margin: 15px;
+     margin-top: 170px;
+    }
+    .email-container {
+        flex-direction: column;
+    }
+    .switch-account {
+        margin-top: 10px;
+    }
+  }

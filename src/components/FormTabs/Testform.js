@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './testform.css';
-import { getQuestion, CreateQuestion, updateQuestion } from '../actions/questions';
-import history from './history';
-import { useParams } from 'react-router';
+import { getQuestion, CreateQuestion, updateQuestion } from '../../actions/questions';
+import { useParams, useHistory } from 'react-router';
+import { v4 as uuidv4 } from 'uuid';
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import MenuItem from '@material-ui/core/MenuItem';
@@ -16,9 +16,7 @@ import {BsTrash} from "react-icons/bs"
 import { IconButton } from '@material-ui/core';
 import FilterNoneIcon from '@material-ui/icons/FilterNone';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-
 // ------------------------------------------
-
 import {Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Accordion from '@material-ui/core/Accordion';
@@ -42,33 +40,27 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Testform({ currentId, setCurrentId }) {
+function Testform() {
 const classes = useStyles();
 let { id } = useParams();
 const dispatch = useDispatch();
+const history = useHistory();
+const user = JSON.parse(localStorage.getItem('profile'));
 
-const question = useSelector((state)=> id ? state.questions.find((p)=> p._id == id): null);
+const question = useSelector((state)=> id ? state.documents.find((p)=> p._id == id): null);
+console.log(question)
 
 const [questions,setQuestions] =useState([]); 
 const [documentName,setDocName] =useState("untitled Document"); 
 const [documentDescription,setDocDesc] = useState(""); 
 const [questionType,setType] = useState("radio");
 
-const [loading,setLoading]= useState(true)
-const questionSet = {documentName, documentDescription, questions}
-
-console.log(questionSet)
-console.log(question)
-console.log(currentId)
+const questionSet = { documentName, documentDescription, questions }
 
 useEffect(()=>{
   let newQuestion = {questionText: "Question",questionType:"radio", options : [{optionText: "Option 1"}], open: true}
   setQuestions(questions=>[...questions, newQuestion]) 
 },[])
-
-useEffect(()=>{
-  dispatch(getQuestion())
-},[dispatch])
 
   useEffect(()=>{
     if(question) {
@@ -79,10 +71,6 @@ useEffect(()=>{
   },[question])
 
    function changeType(e){
-    // dispatch({rrentI
-    //   type:"CHANGE_TYPE",
-    //   questionType:e.target.id
-    // })
     setType(e.target.id)
   }
 
@@ -91,24 +79,26 @@ useEffect(()=>{
    },[changeType])
  
   function commitToDB(e){
+    let url = uuidv4();
     e.preventDefault();
-    if (currentId) {
-      dispatch(updateQuestion(currentId, questionSet))
+    if (id) {
+      dispatch(updateQuestion(id, {...questionSet }))
     } else {
-      dispatch(CreateQuestion(questionSet))
+      dispatch(CreateQuestion({...questionSet, email: user?.result?.email, url, open:true, email_required:false, res_limit:false })) 
     }
-     setCurrentId('');
      dispatch(getQuestion());
      history.push('/');
-    }
+  }
 
   function addMoreQuestionField(){
       expandCloseAll();
-      setQuestions(questions=> [...questions, {questionText: "Question", questionType:"radio", options : [{optionText: "Option 1"}], open: true, required:false}]);
+      // required: false -> i removed
+      setQuestions(questions=> [...questions, {questionText: "Question", questionType:"radio", options : [{optionText: "Option 1"}], open: true }]);
   }
 
   function addQuestionType(i,type){
-    let qs = [...questions];  
+    let qs = [...questions]; 
+    if(type === 'text')  qs[i].options = [{optionText: 'answer'}];
     qs[i].questionType = type;
     setQuestions(qs);
   }
@@ -118,11 +108,8 @@ function copyQuestion(i){
   let qs = [...questions]
   let newquestion = {...qs[i]}
   let qsCopy = JSON.parse(JSON.stringify(qs));
-  qsCopy.push(newquestion);
+  qsCopy.splice(i+1, 0, newquestion);
   setQuestions(qsCopy)
- /* let qs = [...questions]
-    var newQuestion = {...qs[i]}
-    setQuestions([...questions, newQuestion]) */
 }
 
   function deleteQuestion(i){
@@ -136,7 +123,6 @@ function copyQuestion(i){
   function handleOptionValue(text,i, j){
     var optionsOfQuestion = [...questions];
     optionsOfQuestion[i].options[j].optionText = text;
-    //newMembersEmail[i]= email;
     setQuestions(optionsOfQuestion);
   }
 
@@ -147,9 +133,7 @@ function copyQuestion(i){
   }
 
   function onDragEnd(result) {
-      if (!result.destination) {
-        return;
-      }
+      if (!result.destination) return;
       var itemgg = [...questions];
       const itemF = reorder(
         itemgg,
@@ -166,16 +150,12 @@ function copyQuestion(i){
     return result;
   };
 
-  
   function addOption(i){
     var optionsOfQuestion = [...questions];
-    if(optionsOfQuestion[i].options.length < 5) {
+    if(optionsOfQuestion[i].options.length < 5 && optionsOfQuestion[i].questionType !== 'text') {
       optionsOfQuestion[i].options.push({optionText: "Option " + (optionsOfQuestion[i].options.length + 1)})
     } 
-    else{
-      console.log("Max  5 options ");  
-    }
-    //console.log(optionsOfQuestion);
+    else console.log("Max  5 options ");    
     setQuestions(optionsOfQuestion)
   }
 
@@ -184,7 +164,6 @@ function copyQuestion(i){
     if(optionsOfQuestion[i].options.length > 1){
       optionsOfQuestion[i].options.splice(j, 1);
       setQuestions(optionsOfQuestion)
-      //console.log(i + "__" + j);
     }   
   }
 
@@ -199,14 +178,12 @@ function copyQuestion(i){
   function handleExpand(i){
     let qs = [...questions]; 
     for (let j = 0; j < qs.length; j++) {
-      if(i ===j ){
+      if(i ===j) {
         qs[i].open = true;
- 
       } else{
         qs[j].open = false;
        }
-    }
-     setQuestions(qs);
+    } setQuestions(qs);
   }
 
   // Below funtionalities are unused & kept for future improvement updates
@@ -218,45 +195,32 @@ function copyQuestion(i){
 
   function setOptionAnswer(ans,qno){
     var Questions = [...questions];
-
       Questions[qno].answer = ans;
-    
     setQuestions(Questions)
-    console.log(qno+" "+ans)
+    
   }
 
   function setOptionPoints(points,qno){
-    var Questions = [...questions];
-
+    var Questions = [...questions]
       Questions[qno].points = points;
-    
-
     setQuestions(Questions)
-    console.log(qno+" "+points)
   }
 
   function addAnswer(i) {
     var answerOfQuestion = [...questions];
-    
       answerOfQuestion[i].answer= !answerOfQuestion[i].answer;
-    
     setQuestions(answerOfQuestion)
   }
 
   function doneAnswer(i){
     var answerOfQuestion = [...questions];
-    
       answerOfQuestion[i].answer= !answerOfQuestion[i].answer;
-    
     setQuestions(answerOfQuestion)
   }
 
   function requiredQuestion(i){
     var requiredQuestion = [...questions];
-  
-      requiredQuestion[i].required =  ! requiredQuestion[i].required
-    
-    //console.log( requiredQuestion[i].required+" "+i);
+    requiredQuestion[i].required =  ! requiredQuestion[i].required
     setQuestions(requiredQuestion)
   }
 
@@ -264,11 +228,10 @@ function questionsUI(){
   return  questions.map((ques, i)=> (
   <Draggable key={i} draggableId={i + 'id'} index={i}>
       {(provided, snapshot) => (
-        <div
-        ref={provided.innerRef}
+        <div ref={provided.innerRef}       
         {...provided.draggableProps}
-        {...provided.dragHandleProps}
-        >
+        {...provided.dragHandleProps} >
+        
         <div>
         <div style={{marginBottom: "0px"}}>
         <div style={{width:'100%', marginBottom: '0px' }}>
@@ -277,37 +240,32 @@ function questionsUI(){
           
        <Accordion onChange={()=>{handleExpand(i)}} expanded={questions[i].open} >
        
-        { (!questions[i].open) && (
-          <AccordionSummary
-           className={classes.panelSummary}
-                  
-           aria-controls="panel1a-content"
-           id="panel1a-header"
-           elevation={2} 
-          >         
-          <div className="saved_questions">
-          <Typography  style={{fontSize:"15px",fontWeight:"400",letterSpacing: '.1px',lineHeight:'24px',paddingBottom:"8px"}} >{i+1}.  {ques.questionText}</Typography>
+    { (!questions[i].open) && (
+        <AccordionSummary
+        className={classes.panelSummary}      
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+        elevation={2} >
+                   
+      <div className="saved_questions">
+        <Typography  style={{fontSize:"15px",fontWeight:"400",letterSpacing: '.1px',lineHeight:'24px',paddingBottom:"8px"}} >{i+1}.  {ques.questionText}</Typography>
                 
       {ques.options.map((op, j)=>(
                  
       <div key={j} >
       <div style={{display: 'flex'}}>
-      <FormControlLabel style={{marginLeft:"5px",marginBottom:"5px"}} disabled control={<input type={ques.questionType} color="primary" style={{marginRight: '3px', }} required={ques.type}/>} label={
-      <Typography style={{fontFamily:' Roboto,Arial,sans-serif',
-      fontSize:' 13px',
-      fontWeight: '400',
-      letterSpacing: '.2px',
-      lineHeight: '20px',
-      color: '#202124'}}>
+      <FormControlLabel style={{marginLeft:"5px",marginBottom:"5px"}} 
+      disabled control={<input type={ques.questionType}  placeholder = {ques.questionType === 'text' && ques.options[j].optionText} color="primary" style={ques.questionType === 'text'? {marginRight: '3px',minHeight:'30px',width:'220px'}: null} required={ques.type}/>} 
+      label={ ques.questionType !== 'text' &&
+      <Typography style={{fontFamily:' Roboto,Arial,sans-serif',fontSize:'13px', fontWeight: '400', letterSpacing: '.2px',lineHeight: '20px', color: '#202124'}}>
        {ques.options[j].optionText}
-      </Typography>                  
+      </Typography>                
        } />
       </div>  
    </div>
      ))}  
     </div>            
-     </AccordionSummary> ) }   
-   
+     </AccordionSummary> ) }      
 
       {!ques.answer ? (
       <AccordionDetails className="add_question" >
@@ -342,62 +300,47 @@ function questionsUI(){
      
    <div className="add_footer">
    <div className="add_question_bottom_left">
-   <Button size="small"  onClick={()=>{addOption(i)}} style={{textTransform: 'none',color:"#4285f4",fontSize:"13px",fontWeight:"600"}}> Add Option </Button>              
-    
-    {/* <Button size="small"  onClick={()=>{addAnswer(i)}} style={{textTransform: 'none',color:"#4285f4",fontSize:"13px",fontWeight:"600"}}> 
-         <FcRightUp style={{border:"2px solid #4285f4", padding:"2px",marginRight:"8px"}} />
-          Answer key</Button>*/}                         
+     { ques.questionType !== 'text'? <Button size="small"  onClick={()=>{addOption(i)}} style={{textTransform:'none',color:"#4285f4",fontSize:"13px",fontWeight:"600"}}> Add Option </Button> 
+     : <Button size="small" style={{textTransform:'none',fontSize:"13px",fontWeight:"600",cursor:'not-allowed',pointerEvents:'auto'}} disabled> Add Option </Button>
+   }                  
    </div>
    
     <div className="add_question_bottom">
                               
-       <Button className={classes.button}
+      <Button className={classes.button}
         variant="outlined"
         color="default"
         size="small"
         startIcon={<FilterNoneIcon/>}
-        onClick={()=>{copyQuestion(i)}}
-      >
-      Copy
-      </Button>   
-
-      <Button
+        onClick={()=>{copyQuestion(i)}}> Clone </Button>  
+       
+      <Button className={classes.button}
         variant="outlined"
         color="secondary"
         size="small"
-        className={classes.button}
         startIcon={<BsTrash />}
-        onClick={()=>{deleteQuestion(i)}}
-      >
-      Delete
-      </Button>                           
-   
+        onClick={()=>{deleteQuestion(i)}}> Delete </Button>      
+     
     <div className="question_edit">
      <AddCircleOutlineIcon onClick={addMoreQuestionField} className="edit"/>
     </div>
     </div>
-  </div>  
-                        
+  </div>                  
   </AccordionDetails>)
   :
   ( <AccordionDetails className="add_question" >
-                     <div className="top_header">
-                          Choose Correct Answer
-                     </div>
+                     <div className="top_header"> Choose Correct Answer  </div>                                              
 <div >
 <div className="add_question_top">
     <input type="text" className="question " placeholder="Question"    value={ques.questionText} onChange={(e)=>{handleQuestionValue(e.target.value, i)}} disabled/>
     <input type="number" className="points" min="0" step="1" placeholder="0" onChange={(e)=>{setOptionPoints(e.target.value, i)}} />      
 </div>
-
 {ques.options.map((op, j)=>(
     <div className="add_question_body" key={j} style={{marginLeft:"8px",marginBottom:"10px",marginTop:"5px"}}>
-
     <div key={j}>
     <div style={{display: 'flex'}} className="">
     <div className="form-check">
     <label style={{fontSize:"13px"}} onClick={()=>{setOptionAnswer(ques.options[j].optionText, i)}}>
-
   {(ques.questionType!="text") ? 
         <input
         type={ques.questionType}
@@ -406,40 +349,28 @@ function questionsUI(){
         className="form-check-input"
        required={ques.required}
       style={{marginRight:"10px",marginBottom:"10px",marginTop:"5px"}}
-    />:
-  <ShortTextIcon style={{marginRight:"10px"}} />
-}
-                                 
-  {ques.options[j].optionText}
-    </label>
+    /> : <ShortTextIcon style={{marginRight:"10px"}} /> }                                 
+  {ques.options[j].optionText} </label>  
      </div>
   </div>
- </div>
-        
+ </div>      
   </div>   
 ))}  
-
 </div>
-
 </AccordionDetails>                 
-)}
-                                     
-    </Accordion>
+)}                                 
+  </Accordion>
    </div>
     </div>
-   </div>
-     )}
-    </Draggable> 
-    )
+   </div>  )}
+</Draggable> 
   )
-  }
+)
+}
 
- return ( 
- (
-    <div className="question_form">
-    
-    <br></br>
-  <div className="section">
+ return  (
+    <div className="question_form">  <br></br>  
+      <div className="section">
            
   <div className="question_title_section">        
   <div className="question_form_top">
@@ -453,7 +384,6 @@ function questionsUI(){
      value={documentName} 
      onChange={(e)=>{setDocName(e.target.value)}}/>
   
-
     <TextField id="outlined-basic"
     fullWidth 
     multiline
@@ -463,36 +393,32 @@ function questionsUI(){
     value={documentDescription} 
     onChange={(e)=>{setDocDesc(e.target.value)}}/>
     
-    </div>
-    </div>   
+  </div>
+  </div>   
      
-    <DragDropContext onDragEnd={onDragEnd}>
+  <DragDropContext onDragEnd={onDragEnd}>
     <Droppable droppableId="droppable">
       {(provided, snapshot) => (
         <div
           {...provided.droppableProps}
-            ref={provided.innerRef}
-        >
-          {questionsUI()}
-
+            ref={provided.innerRef} >
+              {questionsUI()}
           {provided.placeholder}
           </div>
         )} 
-      </Droppable>
-      </DragDropContext>
+    </Droppable>
+  </DragDropContext>
 
-      <div className="save_form">
+  <div className="save_form">
       <Button variant="contained"
         color="primary"
         startIcon={<SaveIcon />}
         onClick={(e)=>commitToDB(e)} 
-        style={{fontSize:"14px"}}>Save</Button>
-      </div>
-   </div>        
+        style={{fontSize:"14px"}}> Save </Button>
   </div>
-   )
-
-  )
+  </div>        
+</div> 
+)
 }
 
 export default Testform;

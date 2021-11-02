@@ -1,9 +1,10 @@
 import * as api from '../api';
-import { FETCH_QUESTIONS, CREATE, UPDATE, DELETE } from './index.js'
+import { FETCH_QUESTIONS, CREATE, UPDATE, DELETE, SAMPLE } from './index.js'
 
-export const getQuestion = () => async (dispatch) => {
+// gets all the question related to user (dashboard)
+export const getQuestion = (email) => async (dispatch) => {
     try {
-        const { data } = await api.fetchQuestions();
+        const { data } = await api.fetchQuestions(email);
         dispatch({ type: FETCH_QUESTIONS,  payload:data })
     } 
     catch(error) {
@@ -17,6 +18,15 @@ export const CreateQuestion = (question) => async (dispatch) => {
         dispatch({ type: CREATE, payload: data})
     } 
     catch (error) {
+        console.log(error)
+    }
+}
+
+export const getSample = (url) => async (dispatch) => {
+    try {
+        const { data } = await api.getsample(url);
+        dispatch({ type: SAMPLE, payload: data.results });
+    } catch (error) {
         console.log(error)
     }
 }
@@ -39,3 +49,4 @@ export const deleteQuestion = (id) => async (dispatch) => {
         console.log(error)
     }
 }
+

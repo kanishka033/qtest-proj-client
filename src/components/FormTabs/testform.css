@@ -7,7 +7,7 @@ body {
 }
 
 .Accordian{
-   margin-top: -10px;
+  margin-top: -10px;
   height: min-content;
 }
 
@@ -30,7 +30,6 @@ body {
    background-color: white;
    border-radius: 2px;
    padding:15px 20px;
-   text-transform: capitalize;
 }
 
 .question_form_top_name{
@@ -70,7 +69,6 @@ body {
 .add_question{ 
    background-color: white;  
     padding:25px 22px; 
-   text-transform: capitalize;
    display: flex;
    flex-direction: column;
     
@@ -213,7 +211,6 @@ body {
    background-color: white;
    border-radius: 8px;
    padding:20px 2px;
-   text-transform: capitalize;
    display:flex;
    flex-direction: column;  
 }
