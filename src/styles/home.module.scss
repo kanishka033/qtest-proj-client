@@ -1,0 +1,75 @@
+.container {
+    background: linear-gradient(100.42deg, #2F419F 4.97%, #4872B1 56.44%, #4DB4AE 86.12%, #2CDCB2 100%);    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 60vh;
+    @apply w-full md:h-cardcontainer;
+}
+
+.overlay {
+    @apply w-full h-full bg-black bg-opacity-20 flex justify-center relative;
+}
+
+.bgimg {
+    opacity: 0.08;
+    //height: 60vh;
+    @apply absolute h-cardcontainer w-full hidden object-cover md:block z-0 brightness-0;
+}
+
+.burger {
+    @apply absolute md:hidden top-5 left-5;
+}
+
+.menubar {
+    @apply absolute top-16 md:top-12 max-w-7xl flex w-full justify-center md:px-10 lg:px-24 2xl:px-32 items-center z-10 gap-x-6 lg:gap-x-10;
+}
+
+.menu {
+    @apply hidden md:flex items-center justify-center bg-gray-50 text-white bg-opacity-20 w-full h-12 px-4 lg:px-12 rounded-sm shadow-md;
+    
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.menu_link:hover {
+    @apply cursor-pointer 
+    text-shadow: white 0px 0px 1px;
+}
+
+.firstmenu {
+    @apply flex gap-x-3 lg:gap-x-8 font-pops text-lg;
+}
+
+.secondmenu {
+    @apply flex gap-x-3 lg:gap-x-6 ml-auto font-pops text-lg;
+}
+
+.section {
+    @apply absolute text-center flex justify-center items-center w-full top-60 md:top-48 text-white font-pops px-4;
+}
+
+.heroSection {
+    @apply space-y-5;
+}
+
+.herotitle {
+    @apply text-3xl md:text-4xl antialiased font-medium font-pops;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.herotext {
+    @apply text-xl md:text-2xl antialiased font-light md:font-normal font-inter max-w-lg;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.getstartedbtn {
+    @apply px-4 py-1 rounded-sm text-lg shadow-lg hover:scale-95;
+    background:#1B7D60;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.getstartedbtn:hover {
+   background:#21B689 ;  
+}
+
+.getstartedbtn:active {
+    transform: scale(0.95);
+}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './App.css'
 import MainIntro from './components/MainIntro';
 import Userform from './components/UserForm/Userform';
 import Testform from './components/FormTabs/Testform'
@@ -17,6 +16,7 @@ import history from './components/history';
 import SignUp from './components/Auth/SignUp';
 import ResponseView from './components/ResponseView';
 import { Stack } from '@mui/material';
+import Home from './components/Home/Home';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
@@ -69,8 +69,9 @@ return (
 <Route path="/sample" component={SampleQset} /> 
 
 <Route path="/">
-  <Appbar />
-  <MainIntro login={login} />
+  <Home />
+  {/* <Appbar />
+  <MainIntro login={login} /> */}
 </Route>
 
 </Switch>

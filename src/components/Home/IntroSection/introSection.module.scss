@@ -1,0 +1,35 @@
+.section {
+    @apply bg-white w-full py-8 px-3 md:px-5 lg:px-16;
+}
+
+.title { 
+    @apply font-semibold font-pops text-2xl text-center text-secondary mb-6 lg:mb-8;
+}
+
+.container {
+    @apply flex items-center justify-center w-full py-4 ;
+}
+
+.innercontainer {
+    @apply grid md:grid-cols-2 md:grid-rows-2 px-3 md:px-5 gap-y-9 gap-x-5 lg:gap-x-20 md:gap-y-32;
+}
+
+.leftbox {
+    @apply flex max-w-md p-1 gap-x-5 lg:gap-x-7 row-span-2 self-center rounded-lg;
+}
+
+.rightbox {
+    @apply flex max-w-md p-1 gap-x-5 lg:gap-x-7 rounded-lg;
+}
+
+.info {
+    @apply space-y-1.5;
+}
+
+.heading {
+    @apply  font-inter text-secondary text-xl font-semibold;
+}
+
+.description {
+    @apply font-inter text-base text-text font-medium;
+}
