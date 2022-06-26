@@ -14,7 +14,7 @@ import Input from './Input';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
-const SignUp = () => {
+const SignUp = ({ isSignupPage }) => {
   const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -28,6 +28,7 @@ const SignUp = () => {
 
   useEffect(() => {
     dispatch({ type: CLEAR_ERROR });
+    if (isSignupPage) setIsSignup(true);
   }, [])
  
   const handleShowPassword = () => setShowPassword(!showPassword);

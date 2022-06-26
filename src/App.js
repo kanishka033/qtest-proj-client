@@ -51,9 +51,15 @@ return (
   
 <Route path={'/form/:id/edit'} component={FormTabs} /> 
 
-<Route path='/auth'> 
+<Route path={'/auth'}> 
   <Stack direction="row" justifyContent="center" alignItems="center" sx={{height:'100vh'}}>
-    <SignUp />
+    <SignUp isSignupPage={false} />
+  </Stack> 
+</Route>
+
+<Route path='/signup'> 
+  <Stack direction="row" justifyContent="center" alignItems="center" sx={{height:'100vh'}}>
+    <SignUp isSignupPage={true} />
   </Stack> 
 </Route>
 
