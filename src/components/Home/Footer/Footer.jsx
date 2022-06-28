@@ -1,13 +1,19 @@
 import React from 'react'
 import { svgs } from '../../../constants/icons'
 import styles from './footer.module.scss'
+import { useSelector } from 'react-redux';
 
 const Footer = () => {
+  const login = useSelector((state)=> state.auth.login);
+
   return (
     <footer className={styles.footer}>
+    <div className="bg-black bg-opacity-10">
       <div className={styles.top_footer}>
 
-        <form className={styles.form}>
+      { !login && 
+        (
+          <form className={styles.form}>
           <input 
             type="text" 
             placeholder='Full Name' 
@@ -30,8 +36,10 @@ const Footer = () => {
             Send 
           </button>
         </form>
+        )
+      }
 
-        <ul className={styles.sitemap}>
+        <ul className={login? styles.logged_sitemap : styles.sitemap}>
           <li className={styles.link}> 
             <a href="/Home"> Home </a>
           </li>
@@ -47,7 +55,13 @@ const Footer = () => {
         </ul>
 
         <div className={styles.logo_Links_Section}>
-          <img src="/svg/logo_new.svg" alt="qforms" height={70} width={70} />
+         <img 
+          src="/svg/logo_new.svg" 
+          alt="qforms" 
+          height={65} 
+          width={65} 
+          className={login? styles.hide_logo : undefined}
+        />
           <div className={styles.social_links}>
             <img src={svgs.instagram} alt="instagram" height={25} width={25} />
             <img src={svgs.github} alt="github" height={25} width={25} />
@@ -57,9 +71,10 @@ const Footer = () => {
 
       </div>
       <div className={styles.bottom_footer}>
-        <img src={"/svg/copyright.svg"} alt="" height={16} width={16}/>
+        <img src={"/svg/copyright.svg"} alt="" height={14} width={14}/>
         <p> 2021 Qforms. All rights reserved </p>
       </div>
+    </div>
     </footer>
   )
 }

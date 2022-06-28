@@ -5,13 +5,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+  body {
     margin: 0 auto;
     font-family: 'Roboto', sans-serif;
     background-color: white;
     box-sizing: border-box;
    }
-  
+
    .review-slider {
     @apply h-full max-w-xl;
     .swiper-button-next,

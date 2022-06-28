@@ -5,18 +5,22 @@
     @apply w-full md:h-cardcontainer;
 }
 
+.small_container {
+    @extend .container;
+    min-height: 60vh;
+}
+
 .overlay {
     @apply w-full h-full bg-black bg-opacity-20 flex justify-center relative;
 }
 
 .bgimg {
     opacity: 0.08;
-    //height: 60vh;
     @apply absolute h-cardcontainer w-full hidden object-cover md:block z-0 brightness-0;
 }
 
 .burger {
-    @apply absolute md:hidden top-5 left-5;
+    @apply absolute md:hidden top-5 left-5 text-white; 
 }
 
 .menubar {
@@ -24,8 +28,7 @@
 }
 
 .menu {
-    @apply hidden md:flex items-center justify-center bg-gray-50 text-white bg-opacity-20 w-full h-12 px-4 lg:px-12 rounded-sm shadow-md;
-    
+    @apply hidden md:flex items-center justify-center bg-black text-white bg-opacity-25 w-full h-12 px-4 lg:px-12 rounded-sm shadow-md;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -42,21 +45,22 @@
     @apply flex gap-x-3 lg:gap-x-6 ml-auto font-pops text-lg;
 }
 
-.section {
-    @apply absolute text-center flex justify-center items-center w-full top-60 md:top-48 text-white font-pops px-4;
+.heroSection {
+    @apply absolute text-center justify-center items-center w-full top-52 md:top-48 text-white font-pops px-4 space-y-5;
 }
 
-.heroSection {
-    @apply space-y-5;
+.logged_heroSection {
+    @extend .heroSection;
+    @apply flex flex-col md:flex-row gap-x-16 lg:gap-x-24 md:py-6;
 }
 
 .herotitle {
-    @apply text-3xl md:text-4xl antialiased font-medium font-pops;
+    @apply text-center text-2xl sm:text-3xl md:text-4xl antialiased font-medium font-pops;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .herotext {
-    @apply text-xl md:text-2xl antialiased font-light md:font-normal font-inter max-w-lg;
+    @apply text-center text-xl md:text-2xl antialiased font-light md:font-normal font-inter ;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -66,6 +70,10 @@
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
+.hidden_btn {
+    @apply hidden;
+}
+
 .getstartedbtn:hover {
    background:#21B689 ;  
 }
@@ -73,3 +81,21 @@
 .getstartedbtn:active {
     transform: scale(0.95);
 }
+
+.add_btn {
+    @apply h-24 md:h-36 w-32 bg-gray-50 bg-opacity-20 text-white 
+    font-pops text-lg space-y-1 rounded-lg shadow-lg border border-extra-placeholder;
+    text-shadow: white 0px 0px 0.5px;
+}
+
+.add {
+    @apply h-12 w-12 md:h-14 md:w-14;
+}
+
+.add_btn:hover {
+    @apply bg-opacity-25;
+    .create {
+        text-shadow: white 0px 0px 1.5px;
+    }
+}
+

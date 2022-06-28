@@ -46,14 +46,18 @@ return (
       <Appbar />
       <Testform />
     </>
-    : <Redirect to='/auth' /> }
+    : 
+  <Stack direction="row" justifyContent="center" alignItems="center" sx={{height:'100vh'}}>
+    <SignUp isSignupPage={false}/>
+  </Stack>
+  }
 </Route>
   
 <Route path={'/form/:id/edit'} component={FormTabs} /> 
 
 <Route path={'/auth'}> 
   <Stack direction="row" justifyContent="center" alignItems="center" sx={{height:'100vh'}}>
-    <SignUp isSignupPage={false} />
+    <SignUp isSignupPage={false}/>
   </Stack> 
 </Route>
 
@@ -75,9 +79,7 @@ return (
 <Route path="/sample" component={SampleQset} /> 
 
 <Route path="/">
-  <Home />
-  {/* <Appbar />
-  <MainIntro login={login} /> */}
+    <Home />
 </Route>
 
 </Switch>

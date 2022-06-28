@@ -1,9 +1,9 @@
 .footer {
-    @apply bg-blue-900;
+    @apply bg-blue-900 shadow-sm;
 }
 
 .top_footer {
-    @apply flex justify-around py-4;
+    @apply flex justify-around items-center lg:justify-between py-2 lg:px-32 xl:px-40;
 }
 
 .form {
@@ -22,7 +22,16 @@
 }
 
 .sitemap {
-    @apply list-disc text-white font-light my-1 space-y-1;
+    @apply flex flex-col list-disc text-white font-light my-1 gap-y-1;
+}
+
+.logged_sitemap {
+    @extend .sitemap;
+    @apply gap-x-8 lg:flex-row;
+}
+
+.hide_logo {
+    @apply block lg:hidden;
 }
 
 .send_btn:hover {
@@ -38,7 +47,7 @@
 }
 
 .social_links {
-    @apply flex gap-x-6;
+    @apply flex gap-x-6 lg:gap-x-7;
 }
 
 .link {
@@ -48,5 +57,10 @@
 .bottom_footer {
     @apply flex justify-center gap-x-2 border-t py-2 border-lightblue text-white font-light text-sm
     mx-6 md:mx-12 lg:mx-20;
+}
+
+.logged_bottom_footer {
+    @extend .bottom_footer;
+    @apply text-secondary font-inter;
 }
 

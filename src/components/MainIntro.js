@@ -1,4 +1,4 @@
-import { Typography, Box, Button, Card, makeStyles } from '@material-ui/core';
+import { Typography, Box, Card, makeStyles } from '@material-ui/core';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import { useHistory } from 'react-router';
 import '../App.css';
