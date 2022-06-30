@@ -1,6 +1,6 @@
 import React from 'react'
 import Box from '@mui/material/Box';
-import { Button, Avatar } from '@mui/material';
+import { Button } from '@mui/material';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
@@ -14,6 +14,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT } from '../../actions';
+import CodeInputBtn from '../FormCodeComp/CodeInputBtn';
 
 // toggleDrawer : (arg:bool)=> void
 const DrawerList = ({ toggleDrawer }) => {
@@ -30,17 +31,18 @@ const DrawerList = ({ toggleDrawer }) => {
   return (
     <Box
       sx={{ width: 250 }}
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
     >   
       <div style={{margin:'7px 4px 7px 190px'}}>
-        <IconButton>
+        <IconButton onClick={toggleDrawer(false)}>
           <ArrowBackIosNewIcon />
         </IconButton>
       </div>
         <Divider />
+        <div className='px-2 mt-7'>
+        <CodeInputBtn />
+        </div>
+      <List onClick={toggleDrawer(false)} style={{padding:"22px 0px"}}>
 
-      <List>
           <ListItem button key='Create blank' onClick={()=>history.push('/new')} >         
             <ListItemIcon>
             <PostAddIcon />

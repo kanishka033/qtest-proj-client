@@ -3,6 +3,7 @@ import styles from '../../../styles/home.module.scss';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import PostAddIcon from '@material-ui/icons/PostAdd';
+import CodeInputBtn from '../../FormCodeComp/CodeInputBtn';
 
 const Hero = () => {
  
@@ -20,12 +21,17 @@ const Hero = () => {
           assessments and quizzes for free.
           </p>
         </div>
-        <button 
-          className={login? styles.hidden_btn : styles.getstartedbtn}
-          onClick={()=> history.push('/auth')}
-        >
-        Get started
-        </button>
+        
+        <div className={!login ? styles.btns_wrapper: 'hidden'}>
+          <button 
+            className={login? styles.hidden_btn : styles.getstartedbtn}
+            onClick={()=> history.push('/auth')}
+          >
+          Get started
+          </button>
+          { !login && <CodeInputBtn /> }
+        </div>
+
         <button 
           className={ login? styles.add_btn : 'hidden' }
           onClick={()=> history.push('/new')}
