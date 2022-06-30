@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './App.css'
-import MainIntro from './components/MainIntro';
 import Userform from './components/UserForm/Userform';
 import Testform from './components/FormTabs/Testform'
 import FormTabs from './components/FormTabs/FormTabs';
@@ -12,11 +10,13 @@ import SampleQuestions from './components/SampleQuestions';
 import { AUTH } from './actions';
 import { getQuestion } from './actions/questions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import history from './components/history';
 import SignUp from './components/Auth/SignUp';
 import ResponseView from './components/ResponseView';
 import { Stack } from '@mui/material';
+import Home from './components/Home/Home';
+import Footer from './components/Home/Footer/Footer';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
@@ -37,6 +37,7 @@ return (
 <Switch>
 <Route path="/response/:url">
   <Userform />
+  <Footer />
 </Route>
 
  
@@ -46,20 +47,29 @@ return (
       <Appbar />
       <Testform />
     </>
-    : <Redirect to='/auth' /> }
+    : 
+  <Stack direction="row" justifyContent="center" alignItems="center" sx={{height:'100vh'}}>
+    <SignUp isSignupPage={false}/>
+  </Stack>
+  }
 </Route>
   
 <Route path={'/form/:id/edit'} component={FormTabs} /> 
 
-<Route path='/auth'> 
+<Route path={'/auth'}> 
   <Stack direction="row" justifyContent="center" alignItems="center" sx={{height:'100vh'}}>
-    <SignUp />
+    <SignUp isSignupPage={false}/>
+  </Stack> 
+</Route>
+
+<Route path='/signup'> 
+  <Stack direction="row" justifyContent="center" alignItems="center" sx={{height:'100vh'}}>
+    <SignUp isSignupPage={true} />
   </Stack> 
 </Route>
 
 <Route path='/viewtab/response' component={ResponseView} /> 
 
-{/* shouldnt be accessed manually (shows error blank) */}
 <Route path="/:url/submit" component={Submitted} /> 
  
 <Route path="/closed" component={Closed} /> 
@@ -69,8 +79,7 @@ return (
 <Route path="/sample" component={SampleQset} /> 
 
 <Route path="/">
-  <Appbar />
-  <MainIntro login={login} />
+    <Home />
 </Route>
 
 </Switch>

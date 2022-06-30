@@ -9,33 +9,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Button, Chip, Avatar } from '@mui/material';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import decode from 'jwt-decode';
 import ShareIcon from '@mui/icons-material/Share';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import PostAddIcon from '@mui/icons-material/PostAdd';
+import DrawerComp from './Drawer/DrawerComp';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
-      marginRight: 0
-    }
   },
   heading: {
     color: '#FFFFFF',
@@ -89,65 +72,14 @@ function Appbar() {
     history.push('/');
   };
 
-  // drawer state
-  const [state, setState] = useState(false);
-
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-    setState(open);
-  };
-
-const list = (
-    <Box
-      sx={{ width: 250 }}
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >   
-      <div style={{margin:'7px 4px 7px 190px'}}>
-        <IconButton>
-          <ArrowBackIosNewIcon />
-        </IconButton>
-      </div>
-        <Divider />
-
-      <List>
-          <ListItem button key='Create blank' onClick={()=>history.push('/new')} >         
-            <ListItemIcon>
-            <PostAddIcon />
-            </ListItemIcon>
-            <ListItemText primary='Create blank' />
-          </ListItem>
-
-        <ListItem button key='Create Sample' onClick={()=>history.push('/sample')} >
-            <ListItemIcon>
-               <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary='Sample Questions' />
-        </ListItem>
-      </List>  
-
-    </Box>
-  );
-
 return (
   <div className={classes.root}>
   <AppBar position="sticky" elevation={3}>
     <Toolbar>
-      
-      <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-        <MenuIcon />
-      </IconButton>
-        <Drawer
-            open={state}
-            onClose={toggleDrawer(false)} >
-          {list}
-        </Drawer>
-
+      <DrawerComp />
       <div style={{padding:"5px", marginRight:"auto"}} >
       <Typography component={Link} to='/' variant="h6" className={classes.heading}>
-        Qtest
+        Qforms
       </Typography> 
       </div>
 

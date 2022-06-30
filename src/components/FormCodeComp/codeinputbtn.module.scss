@@ -1,0 +1,12 @@
+.inputfield {
+@apply py-1 border-t border-l border-b rounded-l-md px-1.5 shadow focus:shadow-md outline-none text-text font-inter;
+}
+
+.drawer_inputfield {
+    @extend .inputfield;
+    @apply w-48;
+}
+
+.codebtn {
+    @apply bg-blue-500 hover:bg-blue-600 px-2.5 py-1 rounded-r-md shadow hover:shadow-md;
+}

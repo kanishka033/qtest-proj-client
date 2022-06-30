@@ -47,10 +47,10 @@ const handleCopy = () => {
         <DialogTitle>Share</DialogTitle>
         <DialogContent >
           <DialogContentText>
-            Link to send 
+            Code to send 
           </DialogContentText>
           <TextField className={classes.root}
-            value={`#/response/${url}`}
+            value={url}
             margin="dense"
             id="textbox"
             fullWidth
@@ -66,7 +66,7 @@ const handleCopy = () => {
         </DialogContent>
         <DialogActions sx={{marginBottom:1}}>
           <Button onClick={handleClose} color="inherit" variant="outlined" sx={{marginRight:0.5}}>Cancel</Button>
-          <CopyToClipboard text={`http://localhost:3000/response/${url}`}>
+          <CopyToClipboard text={url}>
           <Button onClick={handleCopy} variant='contained' sx={{marginRight:2}}>Copy</Button>
           </CopyToClipboard>
         </DialogActions>

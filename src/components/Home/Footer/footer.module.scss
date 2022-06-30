@@ -1,0 +1,66 @@
+.footer {
+    @apply bg-blue-900 shadow-sm;
+}
+
+.top_footer {
+    @apply flex justify-around items-center lg:justify-between py-1.5 lg:px-32 xl:px-40;
+}
+
+.form {
+    @apply hidden md:flex flex-col gap-y-4 w-full max-w-xs my-2;
+}
+
+.input_field {
+    @apply py-1 px-3 shadow-md resize-none outline-none focus-within:bg-opacity-30 bg-black bg-opacity-20 
+    rounded-sm font-light placeholder-opacity-90 placeholder-gray-300 text-white;
+}
+
+.send_btn {
+    @apply py-1 rounded-sm text-white text-lg shadow-lg hover:scale-95;
+    background:#1B7D60;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sitemap {
+    @apply flex flex-col list-disc text-white font-light my-1 gap-y-1;
+}
+
+.logged_sitemap {
+    @extend .sitemap;
+    @apply gap-x-8 lg:flex-row;
+}
+
+.hide_logo {
+    @apply block lg:hidden;
+}
+
+.send_btn:hover {
+   background:#21B689 ;  
+}
+
+.send_btn:active {
+    transform: scale(0.95);
+}
+
+.logo_Links_Section {
+    @apply flex flex-col gap-y-9 items-end my-3;
+}
+
+.social_links {
+    @apply flex gap-x-6 lg:gap-x-7;
+}
+
+.link {
+    @apply cursor-pointer hover:underline;
+}
+
+.bottom_footer {
+    @apply flex justify-center gap-x-2 border-t py-2 border-lightblue text-white font-light text-sm
+    mx-6 md:mx-12 lg:mx-20;
+}
+
+.logged_bottom_footer {
+    @extend .bottom_footer;
+    @apply text-secondary font-inter;
+}
+

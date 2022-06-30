@@ -5,7 +5,6 @@ import { Select, FormControl, MenuItem, InputLabel, Paper, TextField, Button, Ty
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useHistory } from 'react-router';
 
-
 const categories = [  { name: 'General Knowledge', num: 9 },
                       { name: 'Books', num: 10 },
                       { name: 'Films', num: 11 },

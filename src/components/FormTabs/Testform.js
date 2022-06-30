@@ -47,7 +47,7 @@ const dispatch = useDispatch();
 const history = useHistory();
 const user = JSON.parse(localStorage.getItem('profile'));
 
-const question = useSelector((state)=> id ? state.documents.find((p)=> p._id == id): null);
+const question = useSelector((state)=> id ? state.documents.find((p)=> p._id === id): null);
 console.log(question)
 
 const [questions,setQuestions] =useState([]); 
@@ -84,7 +84,13 @@ useEffect(()=>{
     if (id) {
       dispatch(updateQuestion(id, {...questionSet }))
     } else {
-      dispatch(CreateQuestion({...questionSet, email: user?.result?.email, url, open:true, email_required:false, res_limit:false })) 
+      dispatch(CreateQuestion({
+          ...questionSet,
+          email: user?.result?.email,
+          url, open:true,
+          email_required:false,
+          res_limit:false 
+        })) 
     }
      dispatch(getQuestion());
      history.push('/');
