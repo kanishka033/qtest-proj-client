@@ -6,6 +6,11 @@ import { useSelector } from 'react-redux';
 const Footer = () => {
   const login = useSelector((state)=> state.auth.login);
 
+  function formSubmit(e) {
+    e.preventDefault()
+    alert('Message sent!')
+  }
+
   return (
     <footer className={styles.footer}>
     <div className="bg-black bg-opacity-10">
@@ -13,7 +18,7 @@ const Footer = () => {
 
       { !login && 
         (
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={(e)=>formSubmit(e)}>
           <input 
             type="text" 
             placeholder='Full Name' 
@@ -28,7 +33,7 @@ const Footer = () => {
           />
           <textarea 
             placeholder='Type message'
-            rows={4} 
+            rows={3} 
             required
             className={styles.input_field} 
           />
@@ -41,7 +46,7 @@ const Footer = () => {
 
         <ul className={login? styles.logged_sitemap : styles.sitemap}>
           <li className={styles.link}> 
-            <a href="/Home"> Home </a>
+            <a href="/"> Home </a>
           </li>
           <li className={styles.link} >
             <a href="/about"> About </a>
@@ -63,9 +68,12 @@ const Footer = () => {
           className={login? styles.hide_logo : undefined}
         />
           <div className={styles.social_links}>
-            <img src={svgs.instagram} alt="instagram" height={25} width={25} />
-            <img src={svgs.github} alt="github" height={25} width={25} />
-            <img src={svgs.email} alt="email" height={25} width={25} />
+            <a href={'/'}> <img src={svgs.instagram} alt="instagram" height={25} width={25} /> </a>
+            <a href="https://github.com/kanishka033" target="_blank" rel="noopener noreferrer">
+              <img src={svgs.github} alt="github" height={25} width={25} /> </a>
+            <a href="mailto:kanishkasuvarna2001@gmail.com" target="_blank" rel="noopener noreferrer"> 
+              <img src={svgs.email} alt="email" height={25} width={25} /> 
+            </a>
           </div>
         </div>
 

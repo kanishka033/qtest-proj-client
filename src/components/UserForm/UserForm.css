@@ -4,6 +4,10 @@ background-color:#27ae60;
 margin-bottom: 10px;
 }
 
+.top-section {
+    @apply rounded-t-lg bg-blue-800 text-white font-inter;
+}
+
 .alert-container {
     height:100vh;
     width:100%;

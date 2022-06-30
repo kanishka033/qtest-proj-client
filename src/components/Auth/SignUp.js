@@ -75,7 +75,7 @@ const SignUp = ({ isSignupPage }) => {
     
       <Paper className={classes.paper} variant='outlined' >
       {error && <Alert severity="error" className={classes.alert}> {error.message} </Alert>}
-        <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign In' }</Typography>
+        <h4 className="lg:text-xl text-lg text-secondary font-pops">{ isSignup ? 'Sign up' : 'Sign In' }</h4>
         
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>

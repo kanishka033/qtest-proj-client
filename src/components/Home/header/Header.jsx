@@ -13,7 +13,7 @@ const Header = () => {
   <header className={login ? styles.small_container : styles.container}>
     <div className={styles.overlay}>
       <img src={'/images/blue_graphic_bg.jpg'} className={styles.bgimg} alt="" />     
-     <div>
+     <div className={styles.burger}>
       <DrawerComp />
     </div>  
     <div className={styles.menubar}>     

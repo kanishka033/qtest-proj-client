@@ -42,9 +42,6 @@ function SettingsTab() {
           inputProps={{ 'aria-label': 'controlled' }} /> </label>
         </div>
 
-        <div style={{display:"flex",margin:"15px 25px 25px 25px"}}>
-          Set Timer
-        </div>
         </Paper> 
       </div>    )
 }

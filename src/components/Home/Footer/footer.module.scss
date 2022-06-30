@@ -3,11 +3,11 @@
 }
 
 .top_footer {
-    @apply flex justify-around items-center lg:justify-between py-2 lg:px-32 xl:px-40;
+    @apply flex justify-around items-center lg:justify-between py-1.5 lg:px-32 xl:px-40;
 }
 
 .form {
-    @apply hidden md:flex flex-col gap-y-4 w-full max-w-xs my-1;
+    @apply hidden md:flex flex-col gap-y-4 w-full max-w-xs my-2;
 }
 
 .input_field {

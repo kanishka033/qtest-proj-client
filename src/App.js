@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import MainIntro from './components/MainIntro';
 import Userform from './components/UserForm/Userform';
 import Testform from './components/FormTabs/Testform'
 import FormTabs from './components/FormTabs/FormTabs';
@@ -11,12 +10,13 @@ import SampleQuestions from './components/SampleQuestions';
 import { AUTH } from './actions';
 import { getQuestion } from './actions/questions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import history from './components/history';
 import SignUp from './components/Auth/SignUp';
 import ResponseView from './components/ResponseView';
 import { Stack } from '@mui/material';
 import Home from './components/Home/Home';
+import Footer from './components/Home/Footer/Footer';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
@@ -37,6 +37,7 @@ return (
 <Switch>
 <Route path="/response/:url">
   <Userform />
+  <Footer />
 </Route>
 
  
@@ -69,7 +70,6 @@ return (
 
 <Route path='/viewtab/response' component={ResponseView} /> 
 
-{/* shouldnt be accessed manually (shows error blank) */}
 <Route path="/:url/submit" component={Submitted} /> 
  
 <Route path="/closed" component={Closed} /> 

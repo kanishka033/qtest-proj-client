@@ -4,7 +4,6 @@ import Appbar from '../Appbar';
 import ResponseTab from './ResponseTab';
 import SettingsTab from './SettingsTab';
 import { getQuestion } from '../../actions/questions';
-import { updateQuestion } from '../../actions/questions';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -81,13 +80,14 @@ function FormTabs() {
   const auth = useSelector(state => state.auth);
   let email = auth.authData?.result?.email;
 
-  let question = useSelector(state => state.documents.find((p)=> p._id == id));
+  let question = useSelector(state => state.documents.find((p)=> p._id === id));
 
   useEffect(()=> {
     if (email){
       dispatch(getQuestion(email));
     }
     if (!question) history.push('/');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[dispatch, auth])
 
 // should generate questions and email_req onetimeresponse and timer from here
@@ -95,6 +95,7 @@ function FormTabs() {
   const [value, setValue] = useState(0);
 
   const [responseAccept, setResponseAccept] = useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [responseCount, setResponseCount] = useState(0);
 
   // email n res_once should come from qs not from state
@@ -124,7 +125,7 @@ function FormTabs() {
     </Box>
 
 <TabPanel value={value} index={0} >
-    <div style={{height:"100vh"}}>
+    <div style={{height:"100%"}}>
       <Testform />
     </div>    
   </TabPanel>

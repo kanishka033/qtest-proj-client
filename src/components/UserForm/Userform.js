@@ -36,7 +36,7 @@ const [res_limit, setRes_limit] = useState();
 
 const [docName, setDocName] = useState('Untitled');
 const [docDesc, setDocDesc] = useState('');
-// we quest to map bcos questions is an empty array(not falsy)
+
 const [quest, setQuest] = useState();
 const [answer, setAnswer] = useState([]);
 const [email, setEmail] = useState('');
@@ -112,11 +112,15 @@ let questSets;
 if(quest) {
    questSets = quest.map((q, qindex) => {
       return ( 
-         <Paper key={qindex} variant='outlined' style={{padding:"15px",margin:"12px 0px",paddingBottom:'25px',paddingRight:"65px"}}>
+         <div 
+            key={qindex} 
+            style={{padding:"15px",margin:"12px 0px",paddingBottom:'25px',paddingRight:"65px"}}
+            className="border border-bar rounded-sm shadow"
+         >
             <Typography style={{padding:"8px"}}> {qindex + 1}. {q.questionText} </Typography> 
 
          { q.options.map((opt,index)=>(
-            <div style={{padding:'6px'}}>
+            <div key={index} style={{padding:'6px'}}>
             {
             q.questionType === 'radio'? (   
                  
@@ -150,14 +154,14 @@ if(quest) {
             }
          </div>
          )
-         )} </Paper>
+         )} </div>
          
         )
    });
 }
 
 return (
-   <>
+   <div>
 { quest ?
    <div style={{display:"flex",justifyContent:"center"}}> 
    { open ? 
@@ -165,22 +169,17 @@ return (
       
       <Paper variant='outlined' > 
 
-      <div style={{padding:'12px 22px'}}>
+      <div style={{padding:'12px 22px'}} className="top-section">
          <Typography variant='h5' style={{fontWeight:"500"}}> {docName}</Typography>
-         <TextField
-            multiline
-            fullWidth
-            InputProps={{ disableUnderline: true, readOnly: true }}
-            value={docDesc} 
-         /> 
+         <p className="text-white font-light mt-1 text-sm"> {docDesc}  </p>
       </div>
 
       { email_required ?  <>
          <Divider />
-         <p style={{fontSize:'15px',padding:'0px 25px'}}>email <span style={{color:'red'}}>*</span></p>
+         <p style={{fontSize:'15px',padding:'10px 0px 5px 25px'}}>email <span style={{color:'red'}}>*</span></p>
       <div className='email-container' style={{padding:'0px 25px 20px 25px',display:'flex'}}>
          <div> <TextField   
-               style={{width:'270px',marginTop:'-12px',marginRight:'10px'}}   
+               style={{width:'270px',marginTop:'-5px',marginRight:'10px'}}   
                value={email}
                disabled
                /> 
@@ -195,7 +194,7 @@ return (
 
       </Paper>
         { questSets }
-      { quest && <Button variant='contained' onClick={submit} className='submit' sx={{mb:2}}> Submit </Button> } 
+      { quest && <Button variant='contained' onClick={submit} className='submit' sx={{mb:5, mx:3}}> Submit </Button> } 
       
       <Dialog open={dialogOpen}> 
         { !email ? 
@@ -222,7 +221,7 @@ return (
       }
    </Paper>
    }
-   </>
+   </div>
  )
 }
 
