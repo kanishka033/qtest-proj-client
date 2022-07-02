@@ -14,7 +14,7 @@ import Input from './Input';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
-const SignUp = () => {
+const SignUp = ({ isSignupPage }) => {
   const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -28,6 +28,7 @@ const SignUp = () => {
 
   useEffect(() => {
     dispatch({ type: CLEAR_ERROR });
+    if (isSignupPage) setIsSignup(true);
   }, [])
  
   const handleShowPassword = () => setShowPassword(!showPassword);
@@ -74,7 +75,7 @@ const SignUp = () => {
     
       <Paper className={classes.paper} variant='outlined' >
       {error && <Alert severity="error" className={classes.alert}> {error.message} </Alert>}
-        <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign In' }</Typography>
+        <h4 className="lg:text-xl text-lg text-secondary font-pops">{ isSignup ? 'Sign up' : 'Sign In' }</h4>
         
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>

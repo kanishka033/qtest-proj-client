@@ -10,11 +10,11 @@ import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
    card: {
-     margin: theme.spacing(1.5),
-     width: 200,
-     height: 125,
+     margin: theme.spacing(2),
+     width: 205,
+     height: 130,
      border: '1px solid',
-     borderColor: 'white',
+     borderColor: '#c4d7e7',
      "&:hover": {
       border: "1px solid",
       borderColor:"#2980b9",
@@ -80,8 +80,10 @@ useEffect(()=> {
 return (
 <div className="container">
  <div id="dash-container">
- <div id="recent-forms"> <Typography variant="button">Recent Documents</Typography></div>
+ <div id="recent-forms"> <Typography variant="button">Recent Forms</Typography></div>
  <div id="card-container">
+
+ { !docs && <CircularProgress sx={{margin:5}}/> }
 
  { docs && !question.length && noDocs }
 
@@ -109,7 +111,7 @@ return (
    </CardActions>
    </Card>
    )) }
-   { !docs && <CircularProgress sx={{margin:5}}/> }
+   
  </div>
  </div>
 </div>

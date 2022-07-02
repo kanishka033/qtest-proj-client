@@ -1,19 +1,18 @@
-body {
-   background-color:#F4F4F9;
-}
+
 .question_form{
-   background-color:#F4F4F9;
-   height:100vh; 
+   height:100%; 
 }
 
 .Accordian{
   margin-top: -10px;
   height: min-content;
+  @apply border border-lightblue shadow-md;
 }
 
 .section{
    margin: auto;
    width: 50%;
+   padding-bottom: 15px;
 }
 
 @media screen and (max-width: 700px) {
@@ -27,9 +26,12 @@ body {
 }
 
 .question_form_top{  
-   background-color: white;
    border-radius: 2px;
    padding:15px 20px;
+}
+
+.question_title_section {
+   @apply border border-bar;
 }
 
 .question_form_top_name{
@@ -216,5 +218,5 @@ body {
 }
 
 .save_form{
-   margin:15px;
+   margin: 15px 15px;
 }

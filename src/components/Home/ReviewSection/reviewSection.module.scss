@@ -1,0 +1,35 @@
+.section {
+    @apply bg-white w-full py-5 pb-9 lg:pb-16 lg:py-8;
+}
+
+.title {
+    @apply font-semibold font-pops text-2xl text-center text-secondary mb-6 lg:mb-8;
+}
+
+.customerCards {
+    @apply flex flex-col items-center text-center py-2 mb-12 px-3;
+}
+
+.card_image {
+    @apply rounded-full h-24 w-24 mb-2.5;
+}
+
+.line {
+    @apply h-1 w-16 my-4 mb-7;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+}
+
+.customerName {
+    @apply font-semibold text-lg font-pops;
+    color: #37509B;
+}
+
+.customerTitle {
+    @apply font-inter text-secondary;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    @apply hidden ;
+}

@@ -1,37 +1,37 @@
-body{
-  background-color: #F4F4F9;
-}
+
 .container{
-  background-color: #F4F4F9;
   display: flex;
-  justify-content: center;   
+  justify-content: center;
+  background-color: #F4F4F9;   
 }
 
 #recent-forms{
   padding: 8px;
   padding-bottom: 2px;
-  margin-left: 12px;
-  
 }
 
 #dash-container{
 display:flex;
-justify-content:center;
 align-items: center;
 flex-direction: column;
-max-width: 950px;
+min-height: 420px;
+padding-top: 14px;
+padding-bottom: 20px;
+margin-bottom: 10px;
+background-color: #F4F4F9;  
 }
 
 #card-container{
 max-width: 950px;
-align-items:center;
+align-items: center;
 padding: 10px;
 display: flex;
 justify-content: flex-start;
 flex-wrap: wrap;
+padding: 20px 0;
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:800px) {
   #card-container{
     justify-content: center;
   }

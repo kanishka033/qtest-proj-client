@@ -1,4 +1,4 @@
-import { Typography, Box, Button, Card, makeStyles } from '@material-ui/core';
+import { Typography, Box, Card, makeStyles } from '@material-ui/core';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import { useHistory } from 'react-router';
 import '../App.css';
@@ -42,7 +42,7 @@ const newBlank = () => {
 }
 
 const extraInfo = (
-<div id="icons-container">    
+<div id="icons-container" >    
   <p id="usesQuestion"> Who uses <span id="qtest">Qtest?</span> </p>
   <div id="usesIcons"> 
   <div className="iconbox"> <i className="uses fa fa-user"></i>
@@ -85,7 +85,7 @@ return(
   </Card> </> 
   </div> ) :
   ( <div className="right-main">
-      <img src={work} style={{height:"18rem",width:"19rem"}} />    
+      <img src={work} style={{height:"18rem",width:"19rem"}} alt=""/>    
     </div> )
   }
 </div>
