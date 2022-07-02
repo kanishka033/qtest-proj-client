@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+//development { baseURL: http:localhost:5000 }
 const API = axios.create({ baseURL: 'https://qforms-share.herokuapp.com' })
 
 API.interceptors.request.use((req) => {
