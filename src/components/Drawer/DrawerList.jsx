@@ -39,7 +39,7 @@ const DrawerList = ({ toggleDrawer }) => {
       </div>
         <Divider />
         <div className='px-2 mt-7'>
-        <CodeInputBtn />
+        <CodeInputBtn drawer={true} />
         </div>
       <List onClick={toggleDrawer(false)} style={{padding:"22px 0px"}}>
 

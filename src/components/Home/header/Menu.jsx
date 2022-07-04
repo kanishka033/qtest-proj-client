@@ -6,13 +6,16 @@ import { Chip, Avatar } from '@mui/material';
 import DrawerComp from '../../Drawer/DrawerComp';
 
 const Menu = () => {
-
+  const history = useHistory();
   const login = useSelector((state)=> state.auth.login);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  const history = useHistory();
 
   const onContactUs = () => {
-    history.push('/')
+    const element = document.getElementById("contactUsForm")
+    const formbtn = document.getElementById("submit")
+
+    element.scrollIntoView({behavior: "smooth"})
+    setTimeout(()=> formbtn.click(), 1000)
   }
 
   return (

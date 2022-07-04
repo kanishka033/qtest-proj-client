@@ -4,7 +4,7 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 
-const CodeInputBtn = () => {
+const CodeInputBtn = ({ drawer }) => {
     const history = useHistory()
     const login = useSelector((state)=> state.auth.login);
 
@@ -21,7 +21,7 @@ const CodeInputBtn = () => {
             placeholder="code here" 
             value={code} 
             onChange={(e)=>setcode(e.target.value)}
-            className={login? styles.drawer_inputfield : styles.inputfield}
+            className={ login || drawer ? styles.drawer_inputfield : styles.inputfield}
         />
         <button className={styles.codebtn} onClick={()=>submitCode()}> 
           <ArrowForwardOutlinedIcon style={{color:"white"}} />

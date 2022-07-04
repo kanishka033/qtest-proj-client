@@ -18,7 +18,11 @@ const Footer = () => {
 
       { !login && 
         (
-          <form className={styles.form} onSubmit={(e)=>formSubmit(e)}>
+          <form 
+            id="contactUsForm" 
+            className={styles.form} 
+            onSubmit={(e)=>formSubmit(e)}
+          >
           <input 
             type="text" 
             placeholder='Full Name' 
@@ -37,7 +41,7 @@ const Footer = () => {
             required
             className={styles.input_field} 
           />
-          <button className={styles.send_btn}> 
+          <button id="submit" className={styles.send_btn}> 
             Send 
           </button>
         </form>

@@ -10,7 +10,7 @@ const Header = () => {
   const login = useSelector((state)=> state.auth.login);
 
   return (
-  <header className={login ? styles.small_container : styles.container}>
+  <header className={styles.container}>
     <div className={styles.overlay}>
       <img src={'/images/blue_graphic_bg.jpg'} className={styles.bgimg} alt="" />     
      <div className={styles.burger}>
